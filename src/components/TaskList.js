@@ -1,11 +1,16 @@
 import React from "react";
+import Task from "./Task";
 
-function TaskList() {
+const TaskList = ({tasks, selectCategory, handleDelete}) => {
+  const filteredTasks = tasks.filter(task => !selectCategory || selectCategory === "All" || task.category === selectCategory)
+ 
   return (
-    <div className="tasks">
-      {/* display a list of tasks using Task component */}
-    </div>
-  );
+    <div className="tasks"> 
+    {filteredTasks.map(taskObj => (
+    <Task key={taskObj.id || taskObj.text} {...taskObj} handleDelete={handleDelete} />
+  ))}
+  </div>
+  )
 }
 
 export default TaskList;
