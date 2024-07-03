@@ -11,10 +11,15 @@ const initialState = {text: "", category: ""}
 const NewTaskForm = ({categories, onTaskFormSubmit}) => {
   const [formData, setFormData] = useState(initialState)
 
+  // const changeForm = (e) => {
+  //   setFormData(current => ({...current, [e.target.name] : e.target.value }))
+  // }
+  // Updater function won't work on objects in state, so the above doesn't work
+  // https://react.dev/reference/react/useState#updating-objects-and-arrays-in-state
   const changeForm = (e) => {
-    setFormData(current => ({...current, [e.target.name] : e.target.value}))
+    setFormData({ ...formData, [e.target.name] : e.target.value })
   }
-  
+
   const handleSubmit = (e) => {
     e.preventDefault()
     onTaskFormSubmit(formData)

@@ -8,7 +8,6 @@ import { CATEGORIES, TASKS } from "../data";
 
 const taskWithId = TASKS.map(task => ({...task, id: uuidv4()}))
 
-
 const App = () => {
 
   const [selectCategory, setSelectCategory] = useState("All")
@@ -25,11 +24,12 @@ const App = () => {
   const onTaskFormSubmit = (newTask) => {
     setSelectTasks(current => [...current, newTask])
   }
+
   return ( 
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter categories={CATEGORIES} handleClick={handleClick} selectCategory={selectCategory} />
-      <NewTaskForm onTaskFormSubmit={onTaskFormSubmit} categories={CATEGORIES} />
+      <NewTaskForm categories={CATEGORIES} onTaskFormSubmit={onTaskFormSubmit} />
       <TaskList tasks={selectTasks} selectCategory={selectCategory} handleDelete={handleDelete} />
     </div>
   )
